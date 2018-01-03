@@ -1,0 +1,60 @@
+#Game: 7_11_doubles
+#Equipment: 2 dice
+#How to play: Roll the dice. Score points by rolling 7, 11, or doubles.
+#Points: Every time you roll 7, 11, or doubles, you earn 10 points. Otherwise, you lose 5 points. 
+#How to win: Earn 100 points. 
+
+from random import *
+
+def seven_eleven_doubles():
+  round = 0 #track the number of rounds
+  score = 0 #track the player's points
+  question = input("Roll? 0 for no, 1 for yes: ")
+
+  #If the user answers yes, the game keeps running.
+  while score<100:
+	#Roll the dice, add the dice numbers, and track number of rounds
+    if question == "1":
+      die_1 = randint(1,6) 
+      die_2 = randint(1,6)
+      result = int(die_1 + die_2) #Add die 1 and die 2 together 
+      round = round + 1
+      
+      #If the player rolls 7, they earn 20 points.
+      if result==7: 
+        print ("Round " + str(round) + ": " + "You rolled " + str(die_1) + " and " + str(die_2) + ". Lucky 7!")
+        score = score + 20
+        
+      #If the player rolls 11, they earn 20 points.
+      elif result==11: 
+        print ("Round " + str(round) + ": " + "You rolled " + str(die_1) + " and " + str(die_2) + ". Crazy 11!")
+        score = score + 20
+        
+      #If the player rolls doubles, they earn 20 points.
+      elif die_1==die_2: 
+        print ("Round " + str(round) + ": " + "You rolled " + str(die_1) + " and " + str(die_2) + ". Perfect doubles!")
+        score = score + 20
+      
+      #If the player doesn't roll 7, 11, or doubles, they lose 10 points.  
+      else: 
+        print ("Round " + str(round) + ": " + "You rolled " + str(die_1) + " and " + str(die_2) + ". Better luck next round.")
+        score = score - 10
+      
+      print ("Your score is " + str(score) + ".") 
+      
+	  #If the player has 100 points or more, the game ends. Otherwise, the player rolls. 
+      if score >= 100:
+        print ("You've won!")  
+      else:
+        question = input("Roll? 0 for no, 1 for yes.")
+      
+    #If the player press 0 for no, the game stops running.
+    elif question == "0":
+      print("Thanks for playing!")
+      break
+    
+    #If the player doesn't enter 0 (no) or 1 (yes), they're prompted to do so. 
+    else:
+      question = input("Roll? 0 for no, 1 for yes.")
+      
+seven_eleven_doubles()   
